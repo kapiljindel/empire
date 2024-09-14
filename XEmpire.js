@@ -174,6 +174,7 @@ const printBanner = () => {
  / /|_/ / _ \`/  ' \\/ _ \`/ _ \\/ _ \`/ _/_ </ //_ < 
 /_/  /_/\\_,_/_/_/_/\\_,_/_//_/\\_, / /____/_/____/ 
                             /___/` + "\x1b[0m" + "\x1b[1;96m" +  // Bold Cyan
+
 `************************
 Script created by: NaaM-M
 Visit my GitHub: https://github.com/NaaM-M
