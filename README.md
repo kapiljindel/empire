@@ -13,8 +13,8 @@
 
 2. git Clone
    ```shell
-   git clone https://github.com/Naam-M/xempire.git
-   cd exmpire
+   git clone https://github.com/Naam-M/xempirepire.git
+   cd xempire
    ```
 
 3. Install
