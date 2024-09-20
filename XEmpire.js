@@ -341,11 +341,44 @@ const main = async () => {
         .split('\n')
         .filter(Boolean);
 
-    const nangcap = await askQuestion('Do you want to upgrade your skills? (y/n): ');
-    const hoinangcap = nangcap.toLowerCase() === 'y';
-    const pvp = await askQuestion('Do you want to play negotiation? (y/n): ');
-    const hoipvp = pvp.toLowerCase() === 'y';
-    console.clear();
+
+
+
+
+function waitForResponse(question, defaultResponse) {
+    return new Promise((resolve) => {
+        let timer = 2; // 2 seconds countdown
+        console.log(question + ` (y/n, default: ${defaultResponse}): `);
+
+        const interval = setInterval(() => {
+            if (timer > 0) {
+                process.stdout.write(`\rYou have ${timer--} seconds to respond...`);
+            } else {
+                clearInterval(interval);
+                console.log(`\nNo response. Defaulting to "${defaultResponse}".`);
+                resolve(defaultResponse);
+            }
+        }, 1000);
+
+        // Listen for user input
+        askQuestion().then((response) => {
+            clearInterval(interval);
+            console.log('\nResponse received.');
+            resolve(response.toLowerCase() === '' ? defaultResponse : response.toLowerCase());
+        });
+    });
+}
+
+const nangcap = await waitForResponse('Do you want to upgrade your skills?', 'y');
+const hoinangcap = nangcap === 'y';
+
+const pvp = await waitForResponse('Do you want to play negotiation?', 'n');
+const hoipvp = pvp === 'y';
+
+console.clear();
+
+
+
     printBanner();  // Print banner after clearing the console
 
     while (true) {
